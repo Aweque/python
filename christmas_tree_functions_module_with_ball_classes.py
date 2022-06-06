@@ -1,4 +1,5 @@
-import draw_tree_classes as dt 
+import draw_tree_classes as dt
+from pathlib import Path
 #functions for drawing christmas tree is in file draw_tree.py
 #three function are there, draw_tree which draw tree and draw_trunk, which draw trunk in case of correct working 
 # and get_biggest_number for definding the greatest number for centring christmas_tree
@@ -23,10 +24,17 @@ def open_file(filename):
     returns lines for making each cone of tree or empty list in case of error'''
     try:
         fin = open(filename, 'r', encoding='utf-8')
-        return make_pairs(fin)
+        return open_file_with_tree(fin)
     except FileNotFoundError:
         print ("Заданий файл не знайдений")
         return []
+
+def open_file_with_tree(files):
+    cur_dir = Path("")
+    for names in files:
+        work_file = cur_dir / "trees" / names.strip('\n')
+        numbers = work_file.open ('r', encoding='utf-8')
+        make_pairs(numbers)
 
 def  make_pairs(seq):
     ''' make pairs, with the quantity of stars in top and bootom of trapecia
@@ -49,7 +57,7 @@ def  make_pairs(seq):
         result = []     
     width_tree = dt.get_biggest_number(result) #definding the greatest number for centring christmas_tree
     
-    return result, width_tree, b_symb
+    return dt.draw_tree(result, width_tree, b_symb)
 
 def get_spec_symbol(seq):
     '''getting the special symbol, that will be an christmass ball'''
@@ -57,6 +65,6 @@ def get_spec_symbol(seq):
 
 if __name__ == "__main__":
     
-    #f_name = r"D:\myfiles\python\lesson_8\tree.txt"
+    #f_name = r"D:\myfiles\python\python\tree.txt"
     brunches = enter_file_name()
-    dt.draw_tree(*brunches)
+

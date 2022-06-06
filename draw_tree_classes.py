@@ -14,6 +14,7 @@ class TreeTrapezia:
         self.symb = sym
 
     def line (self, line_length): # function for making random line of given length with special symbol
+        random.seed = 13
         tree_line = ''.join(random.choices(line_length*'*'+4*self.symb, k = line_length))
         return tree_line
 
@@ -25,12 +26,12 @@ def draw_tree (pairs:list, width_t:int, ball_sym = 'o'):
     Draw Christmas tree from the stars with given number of stars as a list of pairs with given width and possible ball symbol
     Restriction: All numbers in list is positive and even.
     >>> draw_tree ([[2,6],[4,8]],8, '☯')
-       *☯
-      *☯**
-     *☯**☯*
-      *☯☯*
-     *☯****
-    ****☯*☯*
+       ☯☯   
+      **☯*  
+     ☯***☯* 
+      *☯☯*  
+     ☯☯☯☯*☯ 
+    ☯☯****☯☯
     '''                     
     #prints all trapezias of christmas tree
     for nums in pairs:
